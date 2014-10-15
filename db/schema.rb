@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015163211) do
+ActiveRecord::Schema.define(version: 20141015182242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "moves", force: true do |t|
+    t.text     "description"
+    t.integer  "power_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "moves", ["power_id"], name: "index_moves_on_power_id", using: :btree
 
   create_table "players", force: true do |t|
     t.text     "username"
