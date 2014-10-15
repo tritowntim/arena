@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015182956) do
+ActiveRecord::Schema.define(version: 20141015185929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,5 +55,18 @@ ActiveRecord::Schema.define(version: 20141015182956) do
 
   add_index "ratings", ["player_id"], name: "index_ratings_on_player_id", using: :btree
   add_index "ratings", ["power_id"], name: "index_ratings_on_power_id", using: :btree
+
+  create_table "turns", force: true do |t|
+    t.integer  "battle_id"
+    t.integer  "power_id"
+    t.integer  "home_player_rating_level"
+    t.integer  "away_player_rating_level"
+    t.integer  "chance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "turns", ["battle_id"], name: "index_turns_on_battle_id", using: :btree
+  add_index "turns", ["power_id"], name: "index_turns_on_power_id", using: :btree
 
 end
